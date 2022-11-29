@@ -6,27 +6,35 @@
     </servlet>
     <servlet>
         <servlet-name>MahasiswaController</servlet-name>
-        <servlet-class>com.model.controller.MahasiswaController</servlet-class>
+        <servlet-class>com.unpam.controller.MahasiswaController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MataKuliahController</servlet-name>
-        <servlet-class>com.model.controller.MataKuliahController</servlet-class>
+        <servlet-class>com.unpam.controller.MataKuliahController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BiayaKuliahController</servlet-name>
+        <servlet-class>com.unpam.controller.BiayaKuliahController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PembayaranController</servlet-name>
+        <servlet-class>com.unpam.controller.PembayaranController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>com.model.controller.LoginController</servlet-class>
+        <servlet-class>com.unpam.controller.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutController</servlet-name>
-        <servlet-class>com.model.controller.LogoutController</servlet-class>
+        <servlet-class>com.unpam.controller.LogoutController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NilaiController</servlet-name>
-        <servlet-class>com.model.controller.NilaiController</servlet-class>
+        <servlet-class>com.unpam.controller.NilaiController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LaporanNilaiController</servlet-name>
-        <servlet-class>com.model.controller.LaporanNilaiController</servlet-class>
+        <servlet-class>com.unpam.controller.LaporanNilaiController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainForm</servlet-name>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>MataKuliahController</servlet-name>
         <url-pattern>/MataKuliahController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BiayaKuliahController</servlet-name>
+        <url-pattern>/BiayaKuliahController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PembayaranController</servlet-name>
+        <url-pattern>/PembayaranController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>

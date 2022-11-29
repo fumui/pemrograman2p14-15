@@ -16,9 +16,11 @@
     <%
         String menu="<br><b>Master Data</b><br>"
                 + "<a href=.>Mahasiswa</a><br>"
-                + "<a href=.>Mata Kuliah</a><br><br>"
+                + "<a href=.>Mata Kuliah</a><br>"
+                + "<a href=.>Biaya Kuliah</a><br><br>"
                 + "<b>Transaksi</b><br>"
-                + "<a href=.>Nilai</a><br><br>"
+                + "<a href=.>Nilai</a><br>"
+                + "<a href=.>Pembayaran</a><br><br>"
                 + "<b>Laporan</b><br>"
                 + "<a href=.>Nilai</a><br><br>"
                 + "<a href=LoginController>Login</a><br><br>";
