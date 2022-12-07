@@ -39,7 +39,8 @@ public class MainForm extends HttpServlet {
                 + "<a href=.>Nilai</a><br>"
                 + "<a href=.>Pembayaran</a><br><br>"
                 + "<b>Laporan</b><br>"
-                + "<a href=.>Nilai</a><br><br>"
+                + "<a href=.>Nilai</a><br>"
+                + "<a href=.>Pembayaran</a><br><br>"
                 + "<a href=LoginController>Login</a><br><br>";
 
         String topMenu = "<nav><ul>"
@@ -58,6 +59,9 @@ public class MainForm extends HttpServlet {
                 + "<li><a href=#>Laporan</a></li>"
                 + "<li><ul>"
                 + "<li><a href=.>Nilai</a></li>"
+                + "</ul></li>"
+                + "<li><ul>"
+                + "<li><a href=.>Pembayaran</a></li>"
                 + "</ul></li>"
                 + "<li><a href=LoginController> Login </a> </li>"
                 + "</ul></nav>";

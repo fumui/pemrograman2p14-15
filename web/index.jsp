@@ -22,7 +22,8 @@
                 + "<a href=.>Nilai</a><br>"
                 + "<a href=.>Pembayaran</a><br><br>"
                 + "<b>Laporan</b><br>"
-                + "<a href=.>Nilai</a><br><br>"
+                + "<a href=.>Nilai</a><br>"
+                + "<a href=.>Pembayaran</a><br><br>"
                 + "<a href=LoginController>Login</a><br><br>";
         String konten="<br><h1>Selamat Datang</h1>";
         String userName="";

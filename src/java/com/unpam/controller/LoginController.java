@@ -83,7 +83,8 @@ public class LoginController extends HttpServlet {
                             + "<a href=NilaiController>Nilai</a><br>"
                             + "<a href=PembayaranController>Pembayaran</a><br><br>"
                             + "<b>Laporan</b><br>"
-                            + "<a href=LaporanNilaiController>Nilai</a><br><br>"
+                            + "<a href=LaporanNilaiController>Nilai</a><br>"
+                            + "<a href=LaporanPembayaranController>Pembayaran</a><br><br>"
                             + "<a href=LogoutController>Logout</a><br><br>";
                     session.setAttribute("menu", menu);
                     session.setMaxInactiveInterval(15 * 60); // 15 x 60 detik = 15 menit

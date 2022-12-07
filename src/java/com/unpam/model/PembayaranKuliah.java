@@ -9,8 +9,27 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import com.unpam.view.PesanDialog;
+import java.io.ByteArrayOutputStream;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRRtfExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.oasis.JROdtExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 /**
  *
@@ -23,6 +42,11 @@ public class PembayaranKuliah {
     private Date tanggalBayar;
     private String pesan;
     private Object[][] list;
+    private byte[] pdfasbytes;
+
+    public byte[] getPdfasbytes() {
+        return pdfasbytes;
+    }
 
     public PembayaranKuliah() {
     }
@@ -267,6 +291,85 @@ public class PembayaranKuliah {
             adaKesalahan = true;
             pesan = "Tidak dapat melakukan koneksi ke server\n" + koneksi.getPesanKesalahan();
         }
+        return !adaKesalahan;
+    }
+    
+    public boolean cetakLaporan(String opsi, String nim, String fileExt, String namaFile) {
+        boolean adaKesalahan = false;
+        Connection connection;
+        pdfasbytes = null;
+
+        if ((connection = koneksi.getConnection()) != null) {
+            String SQLStatement;
+            ResultSet resultSet = null;
+
+            try {
+                Statement statement = connection.createStatement();
+
+                SQLStatement = "SELECT " +
+                                    "tbpembayarankuliah.no_tagihan, " +
+                                    "tbpembayarankuliah.nim, " +
+                                    "tbmahasiswa.nama, " +
+                                    "tbpembayarankuliah.prodi, " +
+                                    "tbpembayarankuliah.pembayaran, " +
+                                    "tbpembayarankuliah.jumlah_bayar, " +
+                                    "tbpembayarankuliah.status, " +
+                                    "tbpembayarankuliah.tanggal_bayar " +
+                                "FROM tbpembayarankuliah " +
+                                "JOIN tbmahasiswa ON tbmahasiswa.nim = tbpembayarankuliah.nim";
+                if (opsi.equals("NIM")) {
+                    SQLStatement = SQLStatement + " where tbmahasiswa.nim='" + nim + "'";
+                }
+                SQLStatement = SQLStatement + " ORDER BY tbpembayarankuliah.no_tagihan ASC";
+                resultSet = statement.executeQuery(SQLStatement);
+            } catch (SQLException ex) {
+                adaKesalahan = true;
+                pesan = "Tidak dapat membaca data\n" + ex;
+            }
+
+            if ((!adaKesalahan) && (resultSet != null)) {
+                try {
+                    JasperDesign disain = JRXmlLoader.load(namaFile);
+                    JasperReport nilaiLaporan = JasperCompileManager.compileReport(disain);
+                    JRResultSetDataSource resultSetDataSource = new JRResultSetDataSource(resultSet);
+                    JasperPrint cetak = JasperFillManager.fillReport(nilaiLaporan, new HashMap(), resultSetDataSource);
+
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+                    JRExporter exporter = null;
+                    if (fileExt.equalsIgnoreCase("PDF")) {
+                        exporter = new JRPdfExporter();
+                    } else if (fileExt.equalsIgnoreCase("XLSX")) {
+                        exporter = new JRXlsxExporter();
+                    } else if (fileExt.equalsIgnoreCase("XLS")) {
+                        exporter = new JRXlsExporter();
+                    } else if (fileExt.equalsIgnoreCase("DOCX")) {
+                        exporter = new JRDocxExporter();
+                    } else if (fileExt.equalsIgnoreCase("ODT")) {
+                        exporter = new JROdtExporter();
+                    } else if (fileExt.equalsIgnoreCase("RTF")) {
+                        exporter = new JRRtfExporter();
+                    } else {
+                        adaKesalahan = true;
+                        pesan = "Format file dengan ektensi " + fileExt + " tidak terdaftar";
+                    }
+
+                    if (!adaKesalahan && (exporter != null)) {
+                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, cetak);
+                        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, byteArrayOutputStream);
+                        exporter.exportReport();
+                        pdfasbytes = byteArrayOutputStream.toByteArray();
+                    }
+                } catch (JRException ex) {
+                    adaKesalahan = true;
+                    pesan = "Tidak dapat mencetak laporan\n" + ex;
+                }
+            }
+        } else {
+            adaKesalahan = true;
+            pesan = "Tidak dapat melakukan koneksi ke server\n" + koneksi.getPesanKesalahan();
+        }
+
         return !adaKesalahan;
     }
 }
