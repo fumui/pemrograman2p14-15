@@ -15,15 +15,17 @@
 <body bgcolor="#808080">
     <%
         String menu="<br><b>Master Data</b><br>"
-                + "<a href=.>Mahasiswa</a><br>"
+                + "<a href=.>Mahasiswaasdada</a><br>"
                 + "<a href=.>Mata Kuliah</a><br>"
-                + "<a href=.>Biaya Kuliah</a><br><br>"
+                + "<a href=.>Biaya Kuliah</a><br>"
+                + "<a href=.>Karyawan</a><br><br>"
                 + "<b>Transaksi</b><br>"
                 + "<a href=.>Nilai</a><br>"
                 + "<a href=.>Pembayaran</a><br><br>"
                 + "<b>Laporan</b><br>"
                 + "<a href=.>Nilai</a><br>"
-                + "<a href=.>Pembayaran</a><br><br>"
+                + "<a href=.>Pembayaran</a><br>"
+                + "<a href=.>Karyawan</a><br><br>"
                 + "<a href=LoginController>Login</a><br><br>";
         String konten="<br><h1>Selamat Datang</h1>";
         String userName="";

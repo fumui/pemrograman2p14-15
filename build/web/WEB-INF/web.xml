@@ -9,6 +9,10 @@
         <servlet-class>com.unpam.controller.MahasiswaController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>KaryawanController</servlet-name>
+        <servlet-class>com.unpam.controller.KaryawanController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MataKuliahController</servlet-name>
         <servlet-class>com.unpam.controller.MataKuliahController</servlet-class>
     </servlet>
@@ -40,6 +44,10 @@
         <servlet-name>LaporanPembayaranController</servlet-name>
         <servlet-class>com.unpam.controller.LaporanPembayaranController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LaporanKaryawanController</servlet-name>
+        <servlet-class>com.unpam.controller.LaporanKaryawanController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainForm</servlet-name>
         <url-pattern>/MainForm</url-pattern>
@@ -47,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>MahasiswaController</servlet-name>
         <url-pattern>/MahasiswaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KaryawanController</servlet-name>
+        <url-pattern>/KaryawanController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MataKuliahController</servlet-name>
@@ -79,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>LaporanPembayaranController</servlet-name>
         <url-pattern>/LaporanPembayaranController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LaporanKaryawanController</servlet-name>
+        <url-pattern>/LaporanKaryawanController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
